@@ -1,2 +1,2 @@
 # AceKG
-Large Scale of Academy Knowledge Graph
+Large Scale of Academic Knowledge Graph
