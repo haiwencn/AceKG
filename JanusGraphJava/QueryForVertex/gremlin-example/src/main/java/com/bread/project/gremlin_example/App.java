@@ -6,6 +6,7 @@ import org.apache.tinkerpop.gremlin.driver.MessageSerializer;
 import org.apache.tinkerpop.gremlin.driver.ResultSet;
 import org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV1d0;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
+import static org.apache.tinkerpop.gremlin.process.traversal.AnonymousTraversalSource.traversal;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper;
@@ -18,10 +19,10 @@ public class App
 {
     public static void main( String[] args )
     {
-    	
     	try {
-	    	Graph graph = EmptyGraph.instance();
-	    	GraphTraversalSource g = graph.traversal().withRemote("conf/remote-graph.properties");
+ 
+	    	//Graph graph = EmptyGraph.instance();
+    		GraphTraversalSource g = traversal().withRemote("conf/remote-graph.properties");
 	    	
 	    	for(int i = 0; i != 1000; ++i) {
 		        try {
@@ -31,6 +32,8 @@ public class App
 		            
 		        } catch(Exception e) {
 		            e.printStackTrace();
+		        } finally {
+		        	g.close();
 		        }
 	    	}
 	    	g.close();
