@@ -81,6 +81,10 @@ public class JanusUtils {
 		return g;
 	}
 	
+	public GraphTraversalSource getG() {
+		return g;
+	}
+	
 	/**
      * Closes the graph instance.
      */
