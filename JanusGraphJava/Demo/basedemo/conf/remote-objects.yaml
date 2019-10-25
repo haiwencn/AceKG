@@ -1,0 +1,5 @@
+hosts: [10.10.11.5]
+port: 8125
+serializer: {
+  className: org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0,
+  config: { ioRegistries: [org.janusgraph.graphdb.tinkerpop.JanusGraphIoRegistry] }}
