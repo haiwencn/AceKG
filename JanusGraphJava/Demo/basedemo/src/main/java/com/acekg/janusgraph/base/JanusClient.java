@@ -2,6 +2,7 @@ package com.acekg.janusgraph.base;
 
 import java.util.stream.Stream;
 import java.util.function.Consumer;
+import java.util.Map;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -49,6 +50,12 @@ public enum JanusClient {
 
     public void submitCodes(final String str, Consumer<? super String> action) {
         final ResultSet resultSet = client.submit(str);
+        Stream<Result> futureList = resultSet.stream();
+        futureList.map(Result::toString).forEach(action);
+    }
+
+    public void submitCodes(final String str, Map<String, Object> map, Consumer<? super String> action) {
+        final ResultSet resultSet = client.submit(str, map);
         Stream<Result> futureList = resultSet.stream();
         futureList.map(Result::toString).forEach(action);
     }
